@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - TiendaEyE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container {
+            max-width: 450px;
+            width: 90%;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(80, 212, 63, 0.3);
+        }
+
+        .auth-title {
+            color: var(--dark-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 8px rgba(80, 212, 63, 0.2);
+            outline: none;
+        }
+
+        .btn-auth {
+            background: linear-gradient(135deg, var(--primary-color), #3ac02e);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        .btn-auth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(80, 212, 63, 0.4);
+        }
+
+        .auth-links {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .auth-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .auth-links a:hover {
+            color: #3ac02e;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #ff4444;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: #ffecec;
+            border-radius: var(--border-radius);
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 1.5rem;
+            }
+            
+            .auth-logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .auth-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 1.5rem;
+            }
+            
+            .btn-auth {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <img src="https://scontent.fvvi1-2.fna.fbcdn.net/v/t39.30808-6/353008046_661878539294080_2691523156726765628_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=05WEHg0MvscQ7kNvgFOUbgl&_nc_oc=AdmTxT4lUHHrnVm3apKo8WM02CbTrWnL-JlKjiyEBaT1f8whCqkX5XYtdrr7HMMmad8&_nc_zt=23&_nc_ht=scontent.fvvi1-2.fna&_nc_gid=5VxgUl2991U498JmjhPaVQ&oh=00_AYEzdSLuD4dQFH-tbCxcRBVYueinN1l989JySKidYoyx1w&oe=67EC04F7" 
+                 alt="Logo Tienda EyE" 
+                 class="auth-logo">
+            <h1 class="auth-title">
+                <i class="fas fa-paw"></i>
+                Tienda EyE
+            </h1>
+        </div>
+
+        <div class="error-message" id="error-message"></div>
+        <form class="auth-form" id="registerForm">
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input type="text" class="form-input" id="nombre" placeholder="Juan Pérez" required>
+            </div>
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input type="tel" class="form-input" id="telefono" placeholder="77777777" required>
+            </div>
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" class="form-input" id="email" placeholder="ejemplo@correo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" class="form-input" id="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-auth">Registrarse</button>
+        </form>
+        <div class="auth-links">
+            <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
